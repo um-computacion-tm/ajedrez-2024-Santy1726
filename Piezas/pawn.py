@@ -1,21 +1,26 @@
-
 class Peon:
+
+    def __init__(self, start_row, start_col, color):
+        self.start_row = start_row
+        self.start_col = start_col
+        self.__color__ = color
     
-    def mov(self,position_actual):
-        
+    def mov(self, position_actual):
         x, y = position_actual
         mov = []
+        
+        direccion = 1 if self.__color__ == "blanco" else -1
 
         if 0 <= y + direccion <= 7:
             mov.append((x, y + direccion))
 
-        if (y == 1 and self.__color__ == "blanco") or (y == 6 and self.__color__ == "negro"):
-            if 0 <= y + 2 * direccion <= 7:
-                mov.append((x, y + 2 * direccion))
+            
+            if (self.__color__ == "blanco" and y == 1) or (self.__color__ == "negro" and y == 6):
+                if 0 <= y + 2 * direccion <= 7:
+                    mov.append((x, y + 2 * direccion))
 
-        if row != start_row:
-            mov.append((row + direccion, col - 1))
-            mov.append((row + direccion, col + 1)) 
-
+        for col in [x - 1, x + 1]:
+            if 0 <= col <= 7 and 0 <= y + direccion <= 7:
+                mov.append((col, y + direccion))
 
         return mov
