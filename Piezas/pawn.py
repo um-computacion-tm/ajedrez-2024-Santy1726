@@ -1,4 +1,13 @@
 class Peon:
+    def __str__(self):
+
+        if self.__color__ == "WHITE":
+
+            return "♙"     # simbolo para el peon blanco
+
+        else:
+
+            return "♟"     # simbolo para el peon negro
 
     def __init__(self, start_row, start_col, color):
         self.start_row = start_row
