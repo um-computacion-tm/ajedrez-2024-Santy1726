@@ -31,6 +31,30 @@ class TestHorse(unittest.TestCase):
         movimientos_esperados = [(5, 6), (6, 5)]
         self.assertEqual(caballo.mov_del_horse(posicion_actual), movimientos_esperados)
 
+
+    def test_mov_del_horse(self):
+        caballo = Horse("BLACK")
+    
+    # Test en la esquina superior izquierda
+        posicion_actual = (7, 0)
+        movimientos_esperados = [(5, 1), (6, 2)]
+        self.assertEqual(caballo.mov_del_horse(posicion_actual), movimientos_esperados)
+
+    # Ubicado en una posición central diferente
+        posicion_actual = (3, 3)
+        movimientos_esperados = [
+        (5, 4), (5, 2), (1, 4), (1, 2),
+        (4, 5), (4, 1), (2, 5), (2, 1)
+    ]
+        self.assertEqual(caballo.mov_del_horse(posicion_actual), movimientos_esperados)
+
+    # Ubicado en la esquina inferior derecha
+        posicion_actual = (0, 7)
+        movimientos_esperados = [(2, 6), (1, 5)]
+        self.assertEqual(caballo.mov_del_horse(posicion_actual), movimientos_esperados)
+
+
+
 if __name__ == '__main__':
     unittest.main()
 
