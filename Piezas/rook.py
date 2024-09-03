@@ -1,54 +1,62 @@
 class Rook:
 
     def __str__(self):
-
         if self.__color__ == "WHITE":
-
             return "♜"
-
         else:
-
             return "♖"
 
+    def __init__(self, posicion_actual, color):
+        self.__posicion_actual__ = posicion_actual
+        self.__color__ = color
 
+    def __esta_dentro_del_tablero__(self, x, y):
+        return 0 <= x < 8 and 0 <= y < 8
 
-    def __init__(self, current_position, color):
-        self.current_position = current_position
-        self.color = color
-    
+    def __esta_ocupada_por_mismo_color__(self, x, y):
+        pieza = self.__obtener_pieza_en_posicion__(x, y)
+        return pieza is not None and pieza.__color__ == self.__color__
 
-    def calculate_valid_moves(self):
-        valid_moves = []
-        x, y = self.current_position
+    def __obtener_pieza_en_posicion__(self, x, y):
+        # Este método debería interactuar con el tablero para obtener la pieza en la posición (x, y)
+        # Por ejemplo, podrías tener un atributo `tablero` en la clase que represente el tablero
+        # y hacer algo como `return self.tablero.obtener_pieza(x, y)`
+        pass
+
+    def __calcular_movimientos_validos__(self):
+        movimientos_validos = []
+        x, y = self.__posicion_actual__
         
         # Movimiento horizontal hacia la derecha
         for i in range(x + 1, 8):
-            if self.is_within_board(i, y) and not self.is_occupied_by_same_color(i, y):
-                valid_moves.append((i, y))
-            if self.is_occupied(i, y):
+            if self.__esta_dentro_del_tablero__(i, y) and not self.__esta_ocupada_por_mismo_color__(i, y):
+                movimientos_validos.append((i, y))
+            if self.__esta_ocupada__(i, y):
                 break
         
         # Movimiento horizontal hacia la izquierda
         for i in range(x - 1, -1, -1):
-            if self.is_within_board(i, y) and not self.is_occupied_by_same_color(i, y):
-                valid_moves.append((i, y))
-            if self.is_occupied(i, y):
+            if self.__esta_dentro_del_tablero__(i, y) and not self.__esta_ocupada_por_mismo_color__(i, y):
+                movimientos_validos.append((i, y))
+            if self.__esta_ocupada__(i, y):
                 break
 
         # Movimiento vertical hacia arriba
         for j in range(y + 1, 8):
-            if self.is_within_board(x, j) and not self.is_occupied_by_same_color(x, j):
-                valid_moves.append((x, j))
-            if self.is_occupied(x, j):
+            if self.__esta_dentro_del_tablero__(x, j) and not self.__esta_ocupada_por_mismo_color__(x, j):
+                movimientos_validos.append((x, j))
+            if self.__esta_ocupada__(x, j):
                 break
 
         # Movimiento vertical hacia abajo
         for j in range(y - 1, -1, -1):
-            if self.is_within_board(x, j) and not self.is_occupied_by_same_color(x, j):
-                valid_moves.append((x, j))
-            if self.is_occupied(x, j):
+            if self.__esta_dentro_del_tablero__(x, j) and not self.__esta_ocupada_por_mismo_color__(x, j):
+                movimientos_validos.append((x, j))
+            if self.__esta_ocupada__(x, j):
                 break
 
-        return valid_moves
+        return movimientos_validos
 
 
+
+   
