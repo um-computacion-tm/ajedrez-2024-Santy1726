@@ -17,10 +17,12 @@ class Rook:
         pieza = self.__obtener_pieza_en_posicion__(x, y)
         return pieza is not None and pieza.__color__ == self.__color__
 
+    def __esta_ocupada__(self, x, y):
+        pieza = self.__obtener_pieza_en_posicion__(x, y)
+        return pieza is not None
+
     def __obtener_pieza_en_posicion__(self, x, y):
         # Este método debería interactuar con el tablero para obtener la pieza en la posición (x, y)
-        # Por ejemplo, podrías tener un atributo `tablero` en la clase que represente el tablero
-        # y hacer algo como `return self.tablero.obtener_pieza(x, y)`
         pass
 
     def __calcular_movimientos_validos__(self):
@@ -56,7 +58,3 @@ class Rook:
                 break
 
         return movimientos_validos
-
-
-
-   
